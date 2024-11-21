@@ -1,0 +1,7 @@
+C:\Users\user\Desktop\bookStore\bin\Debug\bookStore.exe.config
+C:\Users\user\Desktop\bookStore\bin\Debug\bookStore.exe
+C:\Users\user\Desktop\bookStore\bin\Debug\bookStore.pdb
+C:\Users\user\Desktop\bookStore\obj\Debug\bookStore.csproj.AssemblyReference.cache
+C:\Users\user\Desktop\bookStore\obj\Debug\bookStore.csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\bookStore\obj\Debug\bookStore.exe
+C:\Users\user\Desktop\bookStore\obj\Debug\bookStore.pdb
