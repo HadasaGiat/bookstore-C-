@@ -22,16 +22,20 @@ namespace bookStore
         public string GetName() => name;
         public void BuyBook(Book book)
         {
-            //create another book with a price after discount
-            Book discountedBook = book ;
+
+            // calculate the regular discount
+            double discount = book.CalculateDiscount();
+            double priceAfterDiscount = book.GetPrice() - discount;
 
             //discount calculation to premium customer 5%
-            double finalPrice = (book.GetPrice() - book.CalculateDiscount()) *0.95 ;
+            double finalPrice = priceAfterDiscount * 0.95;
 
-            if (book is FictionBook fictionBook)//if the book is fiction so save the data with genre        
+            //if the book is fiction so create a new book with the final price
+            if (book is FictionBook fictionBook)     
                 purchasedBooks.Add(new FictionBook(fictionBook.GetTitle(), fictionBook.GetAuthor(), finalPrice, fictionBook.GetTitle()));
 
-            else if (book is NonFictionBook nonFictionBook)//if the book is non fiction so save the data with subject               
+            //check if the book is non fiction         
+            else if (book is NonFictionBook nonFictionBook)     
                 purchasedBooks.Add(new NonFictionBook(nonFictionBook.GetTitle(), nonFictionBook.GetAuthor(), finalPrice, nonFictionBook.GetTitle()));
 
           
