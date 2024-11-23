@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
@@ -12,21 +13,15 @@ namespace bookStore
 
         string genre;
 
-        //constractor that calling the main c'ot
+        //constractor that calling the main c'tor
         public FictionBook(string title, string author, double price, string genre) : base(title, author, price)
         {
             this.genre = genre;
         }
-        //return genre
-        public string GetGenre()
-        {
-            return genre;
-        }
-
-        //return final price of the book after discount
+        //return 10% discount for Fiction books
         public override double CalculateDiscount()
         {
-            return price * 0.9;
+            return price * 0.10;
         }
     }
 }

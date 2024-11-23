@@ -10,30 +10,34 @@ namespace bookStore
     {
         static void Main(string[] args)
         {
+            //create books
+            Book nonfictionBook = new NonFictionBook("The Secret", "Rhonda Byrne", 100, "personal development");  
+            Book fictionBook = new FictionBook("Avenger", "Frederick Forsyth", 100, "Thriller");
 
-            Book nonfictionBook = new NonFictionBook("The Secret", "Rhonda Byrne", 150, "personal development");//הגדרת אובייקט ספר עיון עם מצביע מסוג האב     
-            Book fictionBook = new FictionBook("Avenger", "Frederick Forsyth", 150, "Thriller");//שימוש באותו מצביע כדי להקצות אובייקט של מחלקה אחרת  
+            //create customers
+            RegularCustomer regularCustomer = new RegularCustomer("hadasa");
+            PremiumCustomer premiumCustomer = new PremiumCustomer("Shir", "SHir1234");
 
-            RegularCustomer regularCustomer = new RegularCustomer("hadasa");//הגדרת אובייקט לקוח רגיל
-            PremiumCustomer premiumCustomer = new PremiumCustomer("Shir", "SHir1234");//הגדרת לקוח פרימיום
-            
-            //קניית ספרים שונים ללקוח 
+            // Regular customer buys books
             regularCustomer.BuyBook(nonfictionBook);
             regularCustomer.BuyBook(fictionBook);
 
-            //הצגת הלקוח ,הצגת השימת הספרים שרכש לקוח רגיל
-            Console.WriteLine(regularCustomer.GetName());
+           
+            //display regular customer purchases
+            Console.WriteLine("Regular --- " + regularCustomer.GetName());
             foreach (var item in regularCustomer.GetPurchasedBooks())
-                Console.WriteLine($"TITLE : {item.GetTitle()} , PRICE : {item.GetPrice()} , PRICE AFTER DISCOUNT : {item.CalculateDiscount()} ");
+                Console.WriteLine($"TITLE : {item.GetTitle()} , AUTHOR : {item.GetAuthor()} , PRICE AFTER DISCOUNT : {item.GetPrice() - item.CalculateDiscount()} ");
 
-            //קניית ספרים ללקוח פרמיום
+            //premium coustomer buys books
             premiumCustomer.BuyBook(nonfictionBook);
             premiumCustomer.BuyBook(fictionBook);
 
-            //הצגת הלקוח ,הצגת השימת הספרים שרכש לקוח פרמיום
-            Console.WriteLine(premiumCustomer.GetName());
+            Console.WriteLine();
+
+            //display premium customer purchases
+            Console.WriteLine("Premium --- " + premiumCustomer.GetName());
             foreach (var item in premiumCustomer.GetPurchasedBooks())
-                Console.WriteLine($"TITLE : {item.GetTitle()} , PRICE : {item.GetPrice()} , PRICE AFTER DISCOUNT : {item.CalculateDiscount()} ");
+                Console.WriteLine($"TITLE : {item.GetTitle()} , AUTHOR : {item.GetAuthor()} , PRICE AFTER DISCOUNT : {item.GetPrice()} ");
 
 
         }

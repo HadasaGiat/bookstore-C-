@@ -7,25 +7,39 @@ using System.Threading.Tasks;
 
 namespace bookStore
 {
-    class PremiumCustomer : RegularCustomer
+    class PremiumCustomer : ICustomer
     {
+        string name;
         string membershipId;
-        public PremiumCustomer(string name, string membershipId) : base(name)//c'tor that runs pather c'tor
+        protected List<Book> purchasedBooks;//defining a list thet save the books the customer buy
+        //c'tor
+        public PremiumCustomer(string name, string membershipId)
         {
+            this.name = name;
             this.membershipId = membershipId;
+            this.purchasedBooks = new List<Book>();
         }
-        public override void BuyBook(Book book)//override the func in the base class
+        public string GetName() => name;
+        public void BuyBook(Book book)
         {
-            Book discountedBook;//create another book with a price after discount
-            double price = book.CalculateDiscount() * 0.95;//discount calculation to premium customer
-            //checking what is the type of book
-            if (book is FictionBook fictionBook)//if the book is fiction so save the data 
-                discountedBook = new FictionBook(fictionBook.GetTitle(), fictionBook.GetAuthor(), price, fictionBook.GetGenre());
-            if (book is NonFictionBook nonFictionBook)
-                discountedBook = new NonFictionBook(nonFictionBook.GetTitle(), nonFictionBook.GetAuthor(), price, nonFictionBook.GetSubject());
-            else discountedBook = book;
+            //create another book with a price after discount
+            Book discountedBook = book ;
 
-            purchasedBooks.Add(discountedBook);
+            //discount calculation to premium customer 5%
+            double finalPrice = (book.GetPrice() - book.CalculateDiscount()) *0.95 ;
+
+            if (book is FictionBook fictionBook)//if the book is fiction so save the data with genre        
+                purchasedBooks.Add(new FictionBook(fictionBook.GetTitle(), fictionBook.GetAuthor(), finalPrice, fictionBook.GetTitle()));
+
+            else if (book is NonFictionBook nonFictionBook)//if the book is non fiction so save the data with subject               
+                purchasedBooks.Add(new NonFictionBook(nonFictionBook.GetTitle(), nonFictionBook.GetAuthor(), finalPrice, nonFictionBook.GetTitle()));
+
+          
+        }
+
+        public List<Book> GetPurchasedBooks()
+        {
+            return purchasedBooks;
         }
     }
 }

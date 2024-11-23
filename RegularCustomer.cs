@@ -9,16 +9,15 @@ namespace bookStore
     class RegularCustomer:ICustomer
     {
         string name;
-        protected List<Book> purchasedBooks=new List<Book>();
+        protected List<Book> purchasedBooks;//defining a list thet save the books the customer buy
+        //c'tor
         public RegularCustomer(string name)
         {
             this.name = name;
+            this.purchasedBooks = new List<Book>();
         }
-        public string GetName()
-        {
-            return name;
-        }
-        public virtual void BuyBook(Book book)//defining the func as virtual that we can override in the inheriting class
+        public string GetName() => name;
+        public void BuyBook(Book book)
         {
             purchasedBooks.Add(book);
         }

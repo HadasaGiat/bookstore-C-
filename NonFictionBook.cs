@@ -15,14 +15,10 @@ namespace bookStore
         {
             this.subject = subject;
         }
-        public string GetSubject()
-        {
-            return subject;
-        }
-
+        //return 5% discount for Non-Fiction books
         public override double CalculateDiscount()
         {
-            return price * 0.95;
+            return price * 0.05;
         }
     }
 }
